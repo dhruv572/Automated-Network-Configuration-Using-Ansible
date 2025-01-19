@@ -19,4 +19,4 @@ The Goal of This Project Is To Automate Several Network Configurations like rout
 - **SSH (To connect to network devices)**
 - **Cisco/Juniper/Arista routers & switches (Physical or simulated using GNS3/EVE-NG)**
 - **Python (Optional) for custom modules**
-- - **Jinja2 (For templating configurations)**
+- **Jinja2 (For templating configurations)**

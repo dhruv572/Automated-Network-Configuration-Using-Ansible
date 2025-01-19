@@ -1,7 +1,8 @@
 # Automated-Network-Configuration-Using-Ansible
 
 
-The Goal of This Project Is To Automate Several Network Configurations like routers, firewalls, and switches using Ansible, reducing manual effort and ensuring consistency.
+Automate Several Network Configurations like routers, firewalls, and switches using Ansible, reducing manual effort and ensuring consistency.
+
 
 ### Features
 

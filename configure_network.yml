@@ -1,0 +1,16 @@
+---
+- name: Configure Network Devices
+  hosts: routers
+  gather_facts: no
+  tasks:
+    - name: Configure hostname
+      ios_config:
+        lines:
+          - hostname Router1
+
+    - name: Configure interfaces
+      ios_config:
+        lines:
+          - interface GigabitEthernet0/1
+          - ip address 192.168.10.1 255.255.255.0
+          - no shutdown

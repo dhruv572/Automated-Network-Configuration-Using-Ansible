@@ -34,3 +34,13 @@
     - name: Save Configuration
       cisco.ios.ios_config:
         save_when: always
+        
+    - name: Configure Firewall Rules
+      cisco.ios.ios_config:
+        lines:
+          - ip access-list extended BLOCK_EXTERNAL
+          - deny ip any any log
+          - permit ip 192.168.1.0 0.0.0.255 any
+          - exit
+          - interface GigabitEthernet0/1
+          - ip access-group BLOCK_EXTERNAL in

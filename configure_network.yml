@@ -1,16 +1,36 @@
----
 - name: Configure Network Devices
-  hosts: routers
+  hosts: all
   gather_facts: no
   tasks:
-    - name: Configure hostname
-      ios_config:
+  
+    - name: Change hostname
+      cisco.ios.ios_config:
         lines:
           - hostname Router1
 
-    - name: Configure interfaces
-      ios_config:
+    - name: Configure Interface
+      cisco.ios.ios_config:
         lines:
           - interface GigabitEthernet0/1
-          - ip address 192.168.10.1 255.255.255.0
+          - ip address 192.168.1.10 255.255.255.0
           - no shutdown
+
+    - name: Configure VLANs (for switches)
+      when: "'switches' in group_names"
+      cisco.ios.ios_config:
+        lines:
+          - vlan 10
+          - name Management
+          - vlan 20
+          - name Sales
+
+    - name: Configure OSPF
+      when: "'routers' in group_names"
+      cisco.ios.ios_config:
+        lines:
+          - router ospf 1
+          - network 192.168.1.0 0.0.0.255 area 0
+
+    - name: Save Configuration
+      cisco.ios.ios_config:
+        save_when: always

@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage('Pull from GitHub') {
+            steps {
+                git 'https://github.com/dhruv572/ansible-network-config.git'
+            }
+        }
+        stage('Run Ansible Playbook') {
+            steps {
+                sh 'ansible-playbook -i inventory.ini configure_network.yml --ask-vault-pass'
+            }
+        }
+        stage('Verify Configuration') {
+            steps {
+                sh 'ansible-playbook -i inventory.ini verify_config.yml'
+            }
+        }
+    }
+}
